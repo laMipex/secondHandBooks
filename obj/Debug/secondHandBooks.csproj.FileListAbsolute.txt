@@ -1,0 +1,17 @@
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\secondHandBooks.exe.config
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\secondHandBooks.exe
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\secondHandBooks.pdb
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.csproj.AssemblyReference.cache
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.Form1.resources
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.Properties.Resources.resources
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.csproj.GenerateResource.cache
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.csproj.CoreCompileInputs.cache
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.exe
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHandBooks.pdb
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\IronBarCode.dll
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\itextsharp.dll
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\itextsharp.pdfa.dll
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\itextsharp.xtra.dll
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\IronBarCode.xml
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\bin\Debug\itextsharp.xml
+C:\Users\mihaj\Desktop\Programiranje\secondHandBooks\obj\Debug\secondHa.C21837F6.Up2Date

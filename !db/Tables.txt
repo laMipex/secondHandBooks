@@ -1,0 +1,59 @@
+CREATE TABLE authors(
+    au_id CHAR(3) PRIMARY KEY,
+    au_fname VARCHAR(20) NOT NULL,
+    au_lname VARCHAR(20) NOT NULL,
+    address VARCHAR(25) NULL,
+    city VARCHAR(15) NULL,
+    state CHAR(3) NULL,
+    country VARCHAR(20) NULL,
+    zip CHAR(5) NULL
+);
+
+CREATE TABLE publishers(
+    pub_id CHAR(3) PRIMARY KEY,
+    pub_name VARCHAR(20) NOT NULL,
+    city VARCHAR(15) NOT NULL,
+    state CHAR(3) NULL,
+    country VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE titles(
+    title_id CHAR(3) PRIMARY KEY,
+    title_name VARCHAR(20) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    pages INTEGER,
+    prices DECIMAL(5,2),
+    sales INTEGER,
+    pub_date DATETIME
+);
+
+CREATE TABLE seller(
+    s_fname VARCHAR(20) NOT NULL,
+    s_lname VARCHAR(20) NOT NULL,
+    county VARCHAR(15) NOT NULL,
+    state CHAR(3) NOT NULL,
+    country VARCHAR(15) NOT NULL,
+    sales INTEGER,
+    s_username CHAR(20) PRIMARY KEY
+);
+
+CREATE TABLE title_authors(
+    title_id CHAR(3) NOT NULL,
+    au_id CHAR(3) NOT NULL,
+    au_order SMALLINT NOT NULL,
+    s_username CHAR(20) NOT NULL,
+    pub_id CHAR(3) NOT NULL,
+    CONSTRAINT pk_title_authors PRIMARY KEY (title_id, au_id, s_username, pub_id),
+    CONSTRAINT title_id_fk FOREIGN KEY (title_id) REFERENCES titles(title_id),
+    CONSTRAINT au_id_fk FOREIGN KEY (au_id) REFERENCES authors(au_id),
+    CONSTRAINT s_username_fk FOREIGN KEY (s_username) REFERENCES seller(s_username),
+    CONSTRAINT pub_id_fk FOREIGN KEY (pub_id) REFERENCES publishers(pub_id)
+);
+
+CREATE TABLE rating(
+    s_username CHAR(20) PRIMARY KEY,
+    rat_sum INTEGER,
+    grade DECIMAL(5,2),
+    reviews INT,
+    CONSTRAINT s_username_rfk FOREIGN KEY (s_username) REFERENCES seller(s_username)
+);

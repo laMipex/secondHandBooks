@@ -1,0 +1,157 @@
+-- Create tables
+
+CREATE TABLE authors(
+    au_id CHAR(3) PRIMARY KEY,
+    au_fname VARCHAR(20) NOT NULL,
+    au_lname VARCHAR(20) NOT NULL,
+    address VARCHAR(25) NULL,
+    city VARCHAR(15) NULL,
+    state CHAR(3) NULL,
+    country VARCHAR(20) NULL,
+    zip CHAR(5) NULL
+);
+
+CREATE TABLE publishers(
+    pub_id CHAR(3) PRIMARY KEY,
+    pub_name VARCHAR(20) NOT NULL,
+    city VARCHAR(15) NOT NULL,
+    state CHAR(3) NULL,
+    country VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE titles(
+    title_id CHAR(3) PRIMARY KEY,
+    title_name VARCHAR(20) NOT NULL,
+    type VARCHAR(10) NOT NULL,
+    pages INTEGER,
+    prices DECIMAL(5,2),
+    sales INTEGER,
+    pub_date DATETIME
+);
+
+CREATE TABLE seller(
+    s_fname VARCHAR(20) NOT NULL,
+    s_lname VARCHAR(20) NOT NULL,
+    county VARCHAR(15) NOT NULL,
+    state CHAR(3) NOT NULL,
+    country VARCHAR(15) NOT NULL,
+    sales INTEGER,
+    s_username CHAR(20) PRIMARY KEY
+);
+
+CREATE TABLE title_authors(
+    title_id CHAR(3) NOT NULL,
+    au_id CHAR(3) NOT NULL,
+    au_order SMALLINT NOT NULL,
+    s_username CHAR(20) NOT NULL,
+    pub_id CHAR(3) NOT NULL,
+    CONSTRAINT pk_title_authors PRIMARY KEY (title_id, au_id, s_username, pub_id),
+    CONSTRAINT title_id_fk FOREIGN KEY (title_id) REFERENCES titles(title_id),
+    CONSTRAINT au_id_fk FOREIGN KEY (au_id) REFERENCES authors(au_id),
+    CONSTRAINT s_username_fk FOREIGN KEY (s_username) REFERENCES seller(s_username),
+    CONSTRAINT pub_id_fk FOREIGN KEY (pub_id) REFERENCES publishers(pub_id)
+);
+
+CREATE TABLE rating(
+    s_username CHAR(20) PRIMARY KEY,
+    rat_sum INTEGER,
+    grade DECIMAL(5,2),
+    reviews INT,
+    CONSTRAINT s_username_rfk FOREIGN KEY (s_username) REFERENCES seller(s_username)
+);
+
+-----INSERT--------
+
+INSERT INTO authors VALUES ('A01', 'Mary', 'Shelley', '17 Buchman street', 'Freetown', 'NUL', 'Sierra Leone', '11207');
+INSERT INTO authors VALUES ('A02','Tobby','Flenderson', '06 Peter Parker street', 'Hanoi', 'NUL', 'Vietnam', '52374');
+INSERT INTO authors VALUES ('A03','Sam', 'Wilson', '65 Brunch street', 'Doha', 'NUL', 'Qatar','45678');
+INSERT INTO authors VALUES ('A04','Jancsi', 'Farkas', 'Becsi utca 93','Rabasentmiklos', 'GMS', 'Hungary','19133');
+INSERT INTO authors VALUES ('A05','Dean', 'Winchester','59 George street', 'Watford', 'NUL', 'UK', '77766');
+INSERT INTO authors VALUES ('A06', 'Samuel L.', 'Chang','21 Derek Drive', 'Streetsboro','OHI', 'USA', '44241');
+INSERT INTO authors VALUES ('A07', 'Tonia', 'Glen', '65 Eren street', 'Dortmund', 'NUL', 'Germany', '65397');
+INSERT INTO authors VALUES ('A08', 'Juliska', 'Kocsis', 'Barany utca 9', 'Ozdfalu', 'BRN', 'Hungary','45678');
+INSERT INTO authors VALUES ('A09','Radojka','Bakarnjic','Ulica Kneza Lazara 16', 'Zitkovac', 'NUL','Serbia', '57235');
+INSERT INTO authors VALUES ('A10', 'Fedor', 'Dostoevskii', 'Ane Karenine 14', 'Moskva', 'NUL','Russia', '95223');
+
+INSERT INTO titles VALUES ('T26','Frankenstein', 'sci-fi', 253, 9.99, 254, '1881-1-1');
+INSERT INTO titles VALUES ('T54','Crime and punishment', 'crime', 312, 15, 100, '1866-12-1');
+INSERT INTO titles VALUES ('T92', 'Lekovito bilje', 'biology', 300, 8.97, 356, '1954-1-10');
+INSERT INTO titles VALUES ('T22', 'Jancsi es Juliska', 'fairytale', 52, 5.22, 32, '1945-7-2');
+INSERT INTO titles VALUES ('T10', 'Elizabeth', 'biography', 243, 10.99, 297, '2000-10-5');
+INSERT INTO titles VALUES ('T52', 'Something nothing', 'philosophy', 563, 32.00, 235, '1998-10-10');
+INSERT INTO titles VALUES ('T99', 'Haunting of Nancy', 'thriller', 365, 9.99, 657, '2015-8-12');
+INSERT INTO titles VALUES ('T97', 'Mansion on the hill', 'horror', 547, 10.97, 566, '1974-11-28');
+INSERT INTO titles VALUES ('T51', 'Instances', 'philosophy', 223, 14.94, 154, '2001-7-2');
+INSERT INTO titles VALUES ('T11', 'Morning routine', 'self-care', 147, 19.12, 258, '1957-12-10');
+INSERT INTO titles VALUES ('T09','Discovery', 'sci-fi', 343, 6.99, 342, '2009-2-5');
+INSERT INTO titles VALUES ('T02', 'Semi', 'thriller', 249, 13.95, 335, '1992-7-12'); 
+
+INSERT INTO titles VALUES ('T27','Mathilda', 'sci-fi', 246, 10.99, 207, '1883-9-1');
+INSERT INTO titles VALUES ('T53','Evil spirits', 'sci-fi', 329, 19.99, 180, '1860-10-9');
+INSERT INTO titles VALUES ('T91', 'Office work', 'psychology', 168, 6.90, 199, '1999-10-10');
+INSERT INTO titles VALUES ('T21', 'Nep mesek', 'fairytale', 110, 9.50, 128, '1947-8-7');
+INSERT INTO titles VALUES ('T08', 'Margareth', 'biography', 225, 12.99, 154, '2002-5-10');
+INSERT INTO titles VALUES ('T50', 'Mirage', 'philosophy', 236, 20.00, 220, '1986-5-15');
+INSERT INTO titles VALUES ('T98', 'Cemetery', 'horror', 526, 19.99, 822, '2017-9-20');
+INSERT INTO titles VALUES ('T96', 'Madame Night', 'horror', 329, 15.50, 693, '1976-11-12');
+INSERT INTO titles VALUES ('T55', 'Mind Brian', 'philosophy', 829, 20.99, 547, '2000-3-8');
+INSERT INTO titles VALUES ('T13', 'Solusns', 'self-care', 561, 30.15, 740, '1958-1-5');
+INSERT INTO titles VALUES ('T07','Finding meaning', 'sci-fi', 105, 5.99, 747, '2008-3-9');
+INSERT INTO titles VALUES ('T01', 'Goofy', 'thriller', 623, 13.95, 623, '1995-7-1'); 
+
+INSERT INTO publishers VALUES ('P01', 'Penguin Books', 'London', 'NUL', 'UK');
+INSERT INTO publishers VALUES ('P02', 'HarperCollins', 'New York', 'NY', 'USA');
+INSERT INTO publishers VALUES ('P03', 'Macmillan Publishers', 'London', 'NUL', 'UK');
+INSERT INTO publishers VALUES ('P04', 'Simon & Schuster', 'New York', 'NY', 'USA');
+INSERT INTO publishers VALUES ('P05', 'Hachette Livre', 'Paris', 'NUL', 'France');
+INSERT INTO publishers VALUES ('P06', 'Scholastic', 'New York', 'NY', 'USA');
+INSERT INTO publishers VALUES ('P07', 'Random House', 'New York', 'NY', 'USA');
+INSERT INTO publishers VALUES ('P08', 'Pearson', 'London', 'NUL', 'UK');
+INSERT INTO publishers VALUES ('P09', 'Bloomsbury', 'London', 'NUL', 'UK');
+
+INSERT INTO seller VALUES ('Emese', 'Nagy', 'Budapest', 'NUL', 'Hungary', '1500', 'Em294');
+INSERT INTO seller VALUES ('Lilly', 'Becker', 'Frankfurt', 'NUL', 'Germany', '1750', 'Lilly__B');
+INSERT INTO seller VALUES ('Neal', 'Patterson', 'Cleveland', 'OH', 'USA', '2500', 'NealOk');
+INSERT INTO seller VALUES ('Gyongyi', 'Szabo', 'Pecs', 'NUL', 'Hungary', '1920', 'Gyongyi');
+INSERT INTO seller VALUES ('Ivan', 'Perisic', 'Zagreb', 'NUL', 'Croatia', '1890', 'Ivanthe_Book');
+INSERT INTO seller VALUES ('Alexandr', 'Bogomolov', 'Tomsk', 'SBR', 'Russia', '2100', 'BookMaster025');
+INSERT INTO seller VALUES ('Ivika', 'Ivika', 'Nis', 'Nul', 'Srbija', '459', 'IvcsiN');
+INSERT INTO seller VALUES ('Dean', 'Tajcic', 'Grodska', 'Sum', 'Srbija', '1333', 'DeanWin057');
+INSERT INTO seller VALUES ('Dragojica', 'Milutin', 'Pancevo', 'JBO', 'Srbija', '1984', 'BookDil');
+INSERT INTO seller VALUES ('Mark', 'Holden', 'Hamilton', 'NBR', 'USA', '2057', 'HoldEn127');
+
+INSERT INTO title_authors VALUES ('T27', 'A01', '1', 'Em294', 'P04');
+INSERT INTO title_authors VALUES ('T53', 'A01', '2', 'Em294', 'P04');
+INSERT INTO title_authors VALUES ('T91', 'A02', '200', 'BookMaster025', 'P03');
+INSERT INTO title_authors VALUES ('T21', 'A04', '100', 'IvcsiN', 'P05');
+INSERT INTO title_authors VALUES ('T08', 'A03', '99', 'Gyongyi', 'P02');
+INSERT INTO title_authors VALUES ('T50', 'A05', '101', 'DeanWin057', 'P07');
+INSERT INTO title_authors VALUES ('T98', 'A06', '89', 'HoldEn127', 'P07');
+INSERT INTO title_authors VALUES ('T96', 'A07', '229', 'NealOk', 'P04');
+INSERT INTO title_authors VALUES ('T55', 'A02', '54', 'Em294', 'P05');
+INSERT INTO title_authors VALUES ('T13', 'A09', '157', 'Em294', 'P01');
+INSERT INTO title_authors VALUES ('T07', 'A06', '666', 'NealOk', 'P09');
+INSERT INTO title_authors VALUES ('T01', 'A02', '444', 'Ivanthe_Book', 'P04');
+INSERT INTO title_authors VALUES ('T92', 'A09', '3', 'Em294', 'P01');
+INSERT INTO title_authors VALUES ('T54', 'A10', '1', 'NealOk', 'P02');
+INSERT INTO title_authors VALUES ('T22', 'A04', '5', 'Gyongyi', 'P04');
+INSERT INTO title_authors VALUES ('T10', 'A02', '6', 'Ivanthe_Book', 'P05');
+INSERT INTO title_authors VALUES ('T52', 'A06', '4', 'IvcsiN', 'P06');
+INSERT INTO title_authors VALUES ('T99', 'A05', '25', 'DeanWin057', 'P07');
+INSERT INTO title_authors VALUES ('T97', 'A03', '20', 'BookDil', 'P08');
+INSERT INTO title_authors VALUES ('T51', 'A06', '12', 'BookMaster025', 'P09');
+INSERT INTO title_authors VALUES ('T11', 'A09', '12', 'HoldEn127', 'P01');
+INSERT INTO title_authors VALUES ('T09', 'A05', '18', 'DeanWin057', 'P07');
+INSERT INTO title_authors VALUES ('T02', 'A08', '21', 'BookMaster025', 'P04');
+
+INSERT INTO rating VALUES ('Em294', 523, 03.10, 50);
+INSERT INTO rating VALUES ('Lilly__B', 432, 5.23, 134 );
+INSERT INTO rating VALUES ('NealOk', 94, 8.22, 254);
+INSERT INTO rating VALUES ('Gyongyi', 1, 6, 1);
+INSERT INTO rating VALUES ('Ivanthe_Book', 1543, 9.98, 1324);
+INSERT INTO rating VALUES ('BookMaster025', 3423, 7.2, 1975);
+INSERT INTO rating VALUES ('IvcsiN', 322, 7.77, 23);
+INSERT INTO rating VALUES ('DeanWin057', 1247, 8.25, 944);
+INSERT INTO rating VALUES ('BookDil', 1235, 6.28, 1230);
+INSERT INTO rating VALUES ('HoldEn127', 1632, 9.00, 1414);
+
